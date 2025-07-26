@@ -1,0 +1,94 @@
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+
+Note that you must do this in-place without making a copy of the array.
+
+ 
+
+Example 1:
+
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+Example 2:
+
+Input: nums = [0]
+Output: [0]
+ 
+
+Constraints:
+
+1 <= nums.length <= 104
+-231 <= nums[i] <= 231 - 1
+ 
+
+
+var moveZeroes = function(nums) {
+for(let i=0;i<nums.length;i++){
+if(nums[i]===0){
+for(let j=i+1;j<nums.length;j++){
+if(nums[j]!==0){
+let temp=nums[i];
+nums[i]=nums[j];
+nums[j]=temp;
+break;
+}
+}
+}
+}
+return nums;
+};
+
+
+
+▶ Outer Loop: for(let i = 0; i < nums.length; i++)
+Goes from start to end, checking each value.
+
+▶ Inner Logic:
+If nums[i] === 0 → means "We found a zero!"
+→ Now check ahead for a non-zero (using another loop j from i+1).
+
+If it finds a non-zero:
+
+Swap nums[i] and nums[j]
+
+break; from the inner loop. (Why? Because we handled this 0, no need to continue.)
+
+🔁 Example Execution:
+Let's walk through the input:
+
+
+[0, 1, 0, 3, 12]
+i = 0 → nums[0] = 0 ✅
+
+Start j = 1 → nums[1] = 1 ≠ 0 ✅
+
+Swap nums[0] and nums[1] → [1, 0, 0, 3, 12]
+
+break from inner loop → go to next i
+
+i = 1 → nums[1] = 0 ✅
+
+Start j = 2 → nums[2] = 0 ❌
+
+j = 3 → nums[3] = 3 ✅
+
+Swap nums[1] and nums[3] → [1, 3, 0, 0, 12]
+
+break → go to next i
+
+i = 2 → nums[2] = 0 ✅
+
+Start j = 3 → nums[3] = 0 ❌
+
+j = 4 → nums[4] = 12 ✅
+
+Swap nums[2] and nums[4] → [1, 3, 12, 0, 0]
+
+break
+
+i = 3 → nums[3] = 0 → No more non-zero after this, nothing to swap.
+
+
+
+
+
+
