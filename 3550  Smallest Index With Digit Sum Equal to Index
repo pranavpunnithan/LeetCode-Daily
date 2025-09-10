@@ -69,3 +69,34 @@ var smallestIndex = function(nums) {
     }
     return -1
 };
+
+
+
+
+Think of n as a number made of digits:
+
+Say n = 352.
+
+We want sum of all digits → 3 + 5 + 2 = 10.
+
+Step-by-step
+
+Take the last digit → n % 10
+
+352 % 10 = 2 → add 2 to sum
+
+Remove that last digit → Math.floor(n / 10)
+
+352 / 10 = 35.2 → floor = 35 → now number left = 35
+
+Repeat:
+
+Last digit of 35 → 35 % 10 = 5 → add to sum → sum = 2 + 5 = 7
+
+Remove last digit → Math.floor(35/10) = 3
+
+Repeat again:
+
+Last digit of 3 → 3 % 10 = 3 → add to sum → sum = 7 + 3 = 10
+
+Remove last digit → Math.floor(3/10) = 0 → stop
